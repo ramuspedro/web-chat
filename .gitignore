@@ -12,5 +12,5 @@ pgadmin/config
 
 database/*
 
-backend/project/setting.py
+backend/project/settings.py
 docker-compose.yml

@@ -25,7 +25,7 @@ services:
       - postgres
   # server
   backend:
-    container_name: django2-api
+    container_name: backend
     build:
       context: ./backend
       dockerfile: django.dockerfile

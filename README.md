@@ -7,6 +7,12 @@
 
 ## Backend
 
+Run the project
+------------------------------------------
+  docker-compose run backend django-admin.py startproject project .
+
+  sudo chown -R $USER .
+
 ## Frontend
 
 ## Database
