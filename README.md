@@ -7,11 +7,27 @@
 
 ## Backend
 
-Run the project
-------------------------------------------
+### Starting a new project
+
+```
   docker-compose run backend django-admin.py startproject project .
 
   sudo chown -R $USER .
+
+  npm install -g @vue/cli
+
+  vue create frontend
+
+  docker-compose run frontend npm install
+```
+
+### Just Run
+
+```
+  sudo chown -R $USER .
+  
+  docker-compose up
+```
 
 ## Frontend
 
@@ -20,3 +36,20 @@ Run the project
 ## Documentation
 
   swagger - https://marcgibbons.com/django-rest-swagger/
+
+## Tasks
+
+### Frontend and Backend
+* List Users
+* Authentication (regular/social)
+* Create a room for chat
+* Participate of room
+* Send messages
+* Private chat
+
+### Frontend
+* Header/Routing
+
+### Backend
+* Create app for Users
+* urls for Chats
