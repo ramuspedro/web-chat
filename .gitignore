@@ -1,0 +1,16 @@
+*.pyc
+*~
+__pycache__
+project/__pycache__/
+myvenv
+db.sqlite3
+/static
+.DS_Store
+
+pgadmin/storage
+pgadmin/config
+
+database/*
+
+backend/project/setting.py
+docker-compose.yml

@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  # database
+  postgres:
+    container_name: django-postgres10.1
+    image: postgres:10.1
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./database:/var/lib/postgresql/data/
+  # admin database
+  pgadmin:
+    container_name: django-pgadmin4
+    image: thajeztah/pgadmin4
+    ports:
+      - '5050:5050'
+    volumes:
+      - ./pgadmin:/pgadmin
+    depends_on:
+      - postgres
+  # server
+  backend:
+    container_name: django2-api
+    build:
+      context: ./backend
+      dockerfile: django.dockerfile
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8000:8000"
+    links:
+    - postgres
+    depends_on:
+      - postgres
+  # web
+  frontend:
+    container_name: vue2-frontend
+    build:
+      context: ./frontend
+      dockerfile: front.dockerfile
+    ports:
+      - "3000:8080"
+    volumes:
+      - ./frontend:/home/app
+    command: "npm run serve"
