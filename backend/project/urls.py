@@ -16,7 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# for swagger documentation
+from rest_framework_swagger.views import get_swagger_view
+
+API_TITLE = 'API FOR WEB CHAT'
+API_DESCRIPTION = 'A Web API for web chat'
+
+schema_view = get_swagger_view(title=API_TITLE)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('user.urls'))
+    path('api/v1/', include('user.urls')),
+    # swagger documentation
+    path('docs/', schema_view)
 ]
