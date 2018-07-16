@@ -12,9 +12,9 @@
             <span class="sr-only">(current)</span>
           </a>
           <a class="nav-item nav-link" href="#">Login/Signup</a>
-          <a class="nav-item nav-link" href="#">Contacts</a>
-          <a class="nav-item nav-link" href="#">Chats</a>
-          <a class="nav-item nav-link" href="#">Rooms</a>
+          <a class="nav-item nav-link" href="/contacts">Contacts</a>
+          <a class="nav-item nav-link" href="/chats">Chats</a>
+          <a class="nav-item nav-link" href="/rooms">Rooms</a>
         </div>
       </div>
     </nav>

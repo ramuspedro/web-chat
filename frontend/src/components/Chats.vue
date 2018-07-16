@@ -1,4 +1,4 @@
-<!-- ./src/components/Home.vue -->
+<!-- ./src/components/Chats.vue -->
 <template>
   <div>
     <div class="title">
@@ -9,10 +9,10 @@
 
 <script>
   export default {
-    name: 'home',
+    name: 'chats',
     data () {
       return {
-        msg: 'Home'
+        msg: 'Chats'
       }
     }
   }
