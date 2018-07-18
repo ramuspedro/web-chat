@@ -2,6 +2,7 @@ import Home from '@/components/Home';
 import Contacts from '@/components/Contacts';
 import Chats from '@/components/Chats';
 import Rooms from '@/components/Rooms';
+import Auth from '@/components/Auth';
 
 export const routes = [{
   path: '/',
@@ -18,5 +19,9 @@ export const routes = [{
 }, {
   path: '/rooms',
   component: Rooms,
+  children: [],
+}, {
+  path: '/auth',
+  component: Auth,
   children: [],
 }, ];

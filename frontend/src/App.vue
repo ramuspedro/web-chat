@@ -11,7 +11,7 @@
           <a class="nav-item nav-link active" href="/">Home
             <span class="sr-only">(current)</span>
           </a>
-          <a class="nav-item nav-link" href="#">Login/Signup</a>
+          <a class="nav-item nav-link" href="/auth">Login/Signup</a>
           <a class="nav-item nav-link" href="/contacts">Contacts</a>
           <a class="nav-item nav-link" href="/chats">Chats</a>
           <a class="nav-item nav-link" href="/rooms">Rooms</a>
