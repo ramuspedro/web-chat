@@ -40,16 +40,26 @@
 ## Tasks
 
 ### Frontend and Backend
-* List Users
-* Authentication (regular/social)
-* Create a room for chat
-* Participate of room
-* Send messages
-* Private chat
+- [ ] List Users
+- [ ] Authentication (regular/social)
+- [ ] Create a room for chat
+- [ ] Participate of room
+- [ ] Send messages
+- [ ] Private chat
+
+- [ ] Add name of 'room'
 
 ### Frontend
-* Header/Routing
+- [ x ] Header/Routing
 
 ### Backend
-* Create app for Users
-* urls for Chats
+- [ ] Create app for Users
+- [ ] urls for Chats
+
+### Explaning
+
+Criar uma sala
+* Quando um usuário cria uma sala, ele automaticamente deve ser adicionado como membro
+
+Abrir um chat com outro usuário
+* Ao abrir uma conversa com outro usuário, ambos devem ser adicionados como membros
