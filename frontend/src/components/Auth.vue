@@ -80,7 +80,11 @@
         axios({
             method: 'post',
             url: 'http://localhost:8000/api/v1/rest-auth/login/',
-            // responseType: 'json'
+            // responseType: "application/json",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
             data: {
               username: this.username,
               password: this.password
