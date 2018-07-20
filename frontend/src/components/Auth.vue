@@ -18,14 +18,14 @@
           <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signin-tab">
             <form @submit.prevent="signUp">
               <div class="form-group">
-                <input type="email" class="form-control" id="emailUp" placeholder="Email Address" required>
+                <input type="email" v-model="emailUp" class="form-control" id="emailUp" placeholder="Email Address" required>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="usernameUp" placeholder="Username" required>
+                  <input type="text" v-model="usernameUp" class="form-control" id="usernameUp" placeholder="Username" required>
                 </div>
                 <div class="form-group col-md-6">
-                  <input type="password" class="form-control" id="passwordUp" placeholder="Password" required>
+                  <input type="password" v-model="passwordUp" class="form-control" id="passwordUp" placeholder="Password" required>
                 </div>
               </div>
               <div class="form-group">
@@ -65,13 +65,35 @@
     name: 'Auth',
     data() {
       return {
-        email: '',
         username: '',
-        password: ''
+        password: '',
+        emailUp: '',
+        usernameUp: '',
+        passwordUp: '',
       }
     },
     methods: {
-      signUp() {},
+      signUp() {
+        axios({
+            method: 'post',
+            url: 'http://localhost:8000/api/v1/rest-auth/registration/',
+            // responseType: "application/json",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            data: {
+              username: this.usernameUp,
+              email: this.emailUp,
+              password1: this.passwordUp,
+              password2: this.passwordUp
+            }
+          })
+          .then(function (response) {
+            console.log("Registration", response);
+
+          });
+      },
       signIn() {
         console.log("login", this.username)
         console.log("login", this.password)
