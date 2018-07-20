@@ -50,7 +50,7 @@
 - [ ] Add name of 'room'
 
 ### Frontend
-- [ x ] Header/Routing
+- [x] Header/Routing
 
 ### Backend
 - [ ] Create app for Users
