@@ -91,7 +91,7 @@
 
           <br />
 
-          <button class="btn btn-primary btn-lg btn-block">Create Room</button>
+          <button @click="createRoom" class="btn btn-primary btn-lg btn-block">Create Room</button>
         </div>
 
       </div>
@@ -100,11 +100,22 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import VueLocalStorage from 'vue-localstorage'
+  
+  Vue.use(VueLocalStorage)
+
   export default {
     name: 'chats',
     data() {
       return {
         msg: 'Chats'
+      }
+    },
+    methods: {
+      createRoom() {
+        console.log("token: ", Vue.localStorage.get('token'))
+        console.log("username: ", Vue.localStorage.get('username'))
       }
     }
   }

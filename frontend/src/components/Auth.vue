@@ -60,6 +60,10 @@
 
 <script>
   import axios from 'axios'
+  import Vue from 'vue'
+  import VueLocalStorage from 'vue-localstorage'
+  
+  Vue.use(VueLocalStorage)
 
   export default {
     name: 'Auth',
@@ -98,6 +102,9 @@
         console.log("login", this.username)
         console.log("login", this.password)
 
+        let username = this.username
+        let password = this.password
+
         // GET request for remote image
         axios({
             method: 'post',
@@ -108,13 +115,16 @@
               'Content-Type': 'application/json',
             },
             data: {
-              username: this.username,
-              password: this.password
+              username: username,
+              password: password
             }
           })
           .then(function (response) {
-            console.log("TESTE", response);
-
+            console.log("TESTE", response)
+            console.log("User", username)
+            // Use localStorage from Vue object
+            Vue.localStorage.set('token', response.data.key)
+            Vue.localStorage.set('username', username)
           });
 
       }
