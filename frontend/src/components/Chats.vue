@@ -87,11 +87,11 @@
 
           <br />
 
-          <input class="form-control form-control-lg" type="text" placeholder="room name">
+          <input class="form-control form-control-lg" type="text" placeholder="room name" v-model="roomName">
 
           <br />
 
-          <button @click="createRoom" class="btn btn-primary btn-lg btn-block">Create Room</button>
+          <button @click="createRoom" class="btn btn-primary btn-lg btn-block" :disabled="!roomName">Create Room</button>
         </div>
 
       </div>
@@ -109,7 +109,7 @@
     name: 'chats',
     data() {
       return {
-        msg: 'Chats'
+        roomName: ""
       }
     },
     methods: {
