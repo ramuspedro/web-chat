@@ -1,5 +1,21 @@
 <template>
   <div class="container">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Chats</h1>
+      <!-- <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+          <button class="btn btn-sm btn-outline-secondary">Share</button>
+          <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+          <span data-feather="calendar"></span>
+          This week
+        </button>
+      </div> -->
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <button class="btn btn-primary my-2" data-toggle="modal" data-target="#createRoomModal">Create a New Room</button>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm" v-for="item in [1, 2, 3]" :key="item">
         <div class="card" style="width: 15rem;">
@@ -107,7 +123,7 @@
       </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createRoomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -149,6 +165,7 @@
       createRoom() {
         console.log("token: ", Vue.localStorage.get('token'))
         console.log("username: ", Vue.localStorage.get('username'))
+        console.log("roomName: ", this.roomName)
       }
     }
   }
