@@ -150,6 +150,7 @@
 
 <script>
   import Vue from 'vue'
+  import axios from 'axios'
   import VueLocalStorage from 'vue-localstorage'
 
   Vue.use(VueLocalStorage)
@@ -166,6 +167,28 @@
         console.log("token: ", Vue.localStorage.get('token'))
         console.log("username: ", Vue.localStorage.get('username'))
         console.log("roomName: ", this.roomName)
+
+        let token = Vue.localStorage.get('token')
+        let username = Vue.localStorage.get('username')
+        let roomName = this.roomName
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:8000/api/v1/chat-session/',
+            // responseType: "application/json",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': "Token " + token
+            },
+            data: {
+              room_name: roomName,
+            }
+          })
+          .then(function (response) {
+            console.log("Chat session: ", response);
+
+          })
       }
     }
   }

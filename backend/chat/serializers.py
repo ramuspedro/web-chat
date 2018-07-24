@@ -1,7 +1,12 @@
 from .models import ChatSession
 from rest_framework import serializers
 
-class ChatSessionSerializer(serializers.ModelSerializer):
+class ChatSessionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatSession
         fields = ('__all__')
+
+class ChatSessionCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatSession
+        fields = ('name_room', 'id')
