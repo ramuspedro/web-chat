@@ -17,16 +17,14 @@ class ChatSessionCreate(generics.CreateAPIView):
   serializer_class = ChatSessionCreateSerializer
   # queryset = ChatSession.objects.all()
   def post(self, request, *args, **kwargs):
-    # print("REQUEST")
-    # print(request.POST.get('name_room'))
 
     # user create the chat session
     user = request.user
     chat_session = ChatSession.objects.create(owner = user, name_room = request.POST.get('name_room'))
+    serializer_class = ChatSessionCreateSerializer(chat_session)
 
     # user already is a member
     ChatSessionMember.objects.create(user = user, chat_session = chat_session)
 
-    serializer_class = ChatSessionCreateSerializer(chat_session)
     # print(serializer_class.data)
     return Response(serializer_class.data)
