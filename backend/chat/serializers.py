@@ -9,4 +9,4 @@ class ChatSessionListSerializer(serializers.ModelSerializer):
 class ChatSessionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatSession
-        fields = ('name_room', 'id')
+        fields = ('room_name', 'id')

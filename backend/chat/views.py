@@ -20,7 +20,7 @@ class ChatSessionCreate(generics.CreateAPIView):
 
     # user create the chat session
     user = request.user
-    chat_session = ChatSession.objects.create(owner = user, name_room = request.POST.get('name_room'))
+    chat_session = ChatSession.objects.create(owner = user, room_name = request.data['room_name'])
     serializer_class = ChatSessionCreateSerializer(chat_session)
 
     # user already is a member
