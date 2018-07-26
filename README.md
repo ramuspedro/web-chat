@@ -40,9 +40,9 @@
 ## Tasks
 
 ### Frontend and Backend
-- [ ] List Users
+- [ ] List Users of chat
 - [ ] Authentication (regular/social)
-- [ ] Create a room for chat
+- [ x ] Create a room for chat
 - [ ] Participate of room
 - [ ] Send messages
 - [ ] Private chat
@@ -53,8 +53,8 @@
 - [x] Header/Routing
 
 ### Backend
-- [ ] Create app for Users
-- [ ] urls for Chats
+- [ x ] Create app for Users
+- [ x ] urls for Chats
 
 ### Explaning
 
