@@ -11,6 +11,10 @@ class ChatSessionList(generics.ListAPIView):
   permission_classes = (permissions.IsAuthenticated,)
   queryset = ChatSession.objects.all()
   serializer_class = ChatSessionListSerializer
+  # def get(self, request):
+  #   serializer = ChatSessionListSerializer(ChatSession.objects.all())
+  #   print(serializer)
+  #   return Response(serializer.data)
 
 class ChatSessionCreate(generics.CreateAPIView):
   permission_classes = (permissions.IsAuthenticated,)
