@@ -1,6 +1,7 @@
 import Home from '@/components/Home';
 import Contacts from '@/components/Contacts';
-import Chats from '@/components/Chats';
+import Chats from '@/components/chat/Chats';
+import Room from '@/components/chat/Room';
 import Rooms from '@/components/Rooms';
 import Auth from '@/components/Auth';
 
@@ -16,7 +17,11 @@ export const routes = [{
   path: '/chats',
   component: Chats,
   children: [],
-}, {
+  }, {
+    path: '/chats/:chat_id',
+    component: Room,
+    children: [],
+  }, {
   path: '/rooms',
   component: Rooms,
   children: [],

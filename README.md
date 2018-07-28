@@ -40,12 +40,13 @@
 ## Tasks
 
 ### Frontend and Backend
-- [ ] List Users of chat
-- [ ] Authentication (regular/social)
+- [ ] List Users of chat room
+- [ ] Authentication (regular x/social)
 - [ x ] Create a room for chat
 - [ ] Participate of room
 - [ ] Send messages
 - [ ] Private chat
+- [ ] Showing messages of a chat
 
 - [ ] Add name of 'room'
 
