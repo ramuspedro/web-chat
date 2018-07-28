@@ -25,7 +25,7 @@
             <h5 class="card-title">{{item.room_name}}</h5>
             <h6>{{item.owner.username}}</h6>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <button @click="enterRoom" class="btn btn-primary">enter</button>
           </div>
         </div>
       </div>
@@ -207,6 +207,11 @@
             console.log("Chat session: ", response);
 
           })
+      },
+      enterRoom() {
+        console.log("TESTEEEEE")
+        this.$router.push(`/chats/1/`)
+        // this.$router.push(`/chats/${data.uri}/`)
       }
     }
   }

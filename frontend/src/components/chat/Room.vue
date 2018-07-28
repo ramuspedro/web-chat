@@ -115,48 +115,12 @@
       }
     },
     created() {
-      let token = Vue.localStorage.get('token')
-
-      axios({
-            method: 'get',
-            url: 'http://localhost:8000/api/v1/chat-session-list/',
-            // responseType: "application/json",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': "Token " + token
-            }
-          })
-          .then((response) => {
-            console.log("Chat list: ", response)
-            this.chatRooms = response.data
-          })
+      console.log("ENTER", this.$route.params.chat_id)
+      
       
     },
     methods: {
       createRoom() {
-
-        let token = Vue.localStorage.get('token')
-        let username = Vue.localStorage.get('username')
-        let roomName = this.roomName
-
-        axios({
-            method: 'post',
-            url: 'http://localhost:8000/api/v1/chat-session-create/',
-            // responseType: "application/json",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': "Token " + token
-            },
-            data: {
-              'room_name': roomName,
-            }
-          })
-          .then((response) => {
-            console.log("Chat session: ", response);
-
-          })
       }
     }
   }
