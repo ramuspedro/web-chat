@@ -16,6 +16,11 @@ class ChatSessionList(generics.ListAPIView):
   #   print(serializer)
   #   return Response(serializer.data)
 
+class ChatSessionListDetail(generics.RetrieveUpdateDestroyAPIView):
+  permission_classes = (permissions.IsAuthenticated,)
+  queryset = ChatSession.objects.all()
+  serializer_class = ChatSessionListSerializer
+
 class ChatSessionCreate(generics.CreateAPIView):
   permission_classes = (permissions.IsAuthenticated,)
   serializer_class = ChatSessionCreateSerializer

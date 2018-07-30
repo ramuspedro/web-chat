@@ -116,8 +116,23 @@
     },
     created() {
       console.log("ENTER", this.$route.params.chat_id)
+
+      let chat_id = this.$route.params.chat_id
       
-      
+      // axios({
+      //       method: 'get',
+      //       url: 'http://localhost:8000/api/v1/chat-session-list/',
+      //       // responseType: "application/json",
+      //       headers: {
+      //         'Accept': 'application/json',
+      //         'Content-Type': 'application/json',
+      //         'Authorization': "Token " + token
+      //       }
+      //     })
+      //     .then((response) => {
+      //       console.log("Chat list: ", response)
+      //       this.chatRooms = response.data
+      //     })      
     },
     methods: {
       createRoom() {
