@@ -118,21 +118,22 @@
       console.log("ENTER", this.$route.params.chat_id)
 
       let chat_id = this.$route.params.chat_id
+      let token = Vue.localStorage.get('token')
       
-      // axios({
-      //       method: 'get',
-      //       url: 'http://localhost:8000/api/v1/chat-session-list/',
-      //       // responseType: "application/json",
-      //       headers: {
-      //         'Accept': 'application/json',
-      //         'Content-Type': 'application/json',
-      //         'Authorization': "Token " + token
-      //       }
-      //     })
-      //     .then((response) => {
-      //       console.log("Chat list: ", response)
-      //       this.chatRooms = response.data
-      //     })      
+      axios({
+            method: 'get',
+            url: `http://localhost:8000/api/v1/chat-session-list/${chat_id}/`,
+            // responseType: "application/json",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': "Token " + token
+            }
+          })
+          .then((response) => {
+            console.log("Chat list: ", response)
+            this.chatRooms = response.data
+          })      
     },
     methods: {
       createRoom() {

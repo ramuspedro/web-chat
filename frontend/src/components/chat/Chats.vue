@@ -25,7 +25,7 @@
             <h5 class="card-title">{{item.room_name}}</h5>
             <h6>{{item.owner.username}}</h6>
             <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <button @click="enterRoom" class="btn btn-primary">enter</button>
+            <button @click="enterRoom(item.uri)" class="btn btn-primary">enter</button>
           </div>
         </div>
       </div>
@@ -208,9 +208,9 @@
 
           })
       },
-      enterRoom() {
-        console.log("TESTEEEEE")
-        this.$router.push(`/chats/1/`)
+      enterRoom(uri) {
+        console.log("TESTEEEEE ", uri)
+        this.$router.push(`/chats/${uri}/`)
         // this.$router.push(`/chats/${data.uri}/`)
       }
     }
