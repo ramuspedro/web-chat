@@ -21,6 +21,18 @@ class ChatSessionListDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = ChatSession.objects.all()
   serializer_class = ChatSessionListSerializer
 
+  def get(self, request, *args, **kwargs):
+    """Get chat by uri"""
+    uri = kwargs['uri']
+    try:
+      chat_session = ChatSession.objects.get(uri = uri)
+      serializer_class = ChatSessionListSerializer(chat_session)
+      return Response(serializer_class.data)
+    except :
+        return Response({
+          "detail": "Not found."
+        })
+
 class ChatSessionCreate(generics.CreateAPIView):
   permission_classes = (permissions.IsAuthenticated,)
   serializer_class = ChatSessionCreateSerializer
