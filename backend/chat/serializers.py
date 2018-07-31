@@ -1,4 +1,4 @@
-from .models import ChatSession
+from .models import ChatSession, ChatSessionMessage
 from rest_framework import serializers
 
 from django.contrib.auth import get_user_model
@@ -23,3 +23,8 @@ class ChatSessionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatSession
         fields = ('room_name', 'id')
+
+class ChatSessionMessageCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatSessionMessage
+        fields = ('__all__')

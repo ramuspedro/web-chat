@@ -4,8 +4,8 @@ from django.shortcuts import render
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 
-from .models import ChatSession, ChatSessionMember
-from .serializers import ChatSessionListSerializer, ChatSessionCreateSerializer
+from .models import ChatSession, ChatSessionMember, ChatSessionMessage
+from .serializers import ChatSessionListSerializer, ChatSessionCreateSerializer, ChatSessionMessageCreateSerializer
 
 class ChatSessionList(generics.ListAPIView):
   permission_classes = (permissions.IsAuthenticated,)
@@ -49,3 +49,8 @@ class ChatSessionCreate(generics.CreateAPIView):
 
     # print(serializer_class.data)
     return Response(serializer_class.data)
+
+class ChatSessionMessageCreate(generics.CreateAPIView):
+  permission_classes = (permissions.IsAuthenticated,)
+  serializer_class = ChatSessionMessageCreateSerializer
+  queryset = ChatSessionMessage.objects.all()
