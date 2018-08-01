@@ -54,3 +54,8 @@ class ChatSessionMessageCreate(generics.CreateAPIView):
   permission_classes = (permissions.IsAuthenticated,)
   serializer_class = ChatSessionMessageCreateSerializer
   queryset = ChatSessionMessage.objects.all()
+
+class ChatSessionMessageList(generics.ListAPIView):
+  permission_classes = (permissions.IsAuthenticated,)
+  serializer_class = ChatSessionMessageCreateSerializer
+  queryset = ChatSessionMessage.objects.all()

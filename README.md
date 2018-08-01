@@ -47,11 +47,18 @@
 - [ ] Send messages
 - [ ] Private chat
 - [ ] Showing messages of a chat
+- restrict messages to only users that participate from a room
+- get messages only related from a room uri
+- delete a chat room
+- share a chat room
+- List users of room
+- Upload image of a room
 
-- [ ] Add name of 'room'
+- [ x ] Add name of 'room'
 
 ### Frontend
 - [x] Header/Routing
+- View of a room
 
 ### Backend
 - [ x ] Create app for Users
