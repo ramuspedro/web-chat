@@ -24,7 +24,7 @@ class ChatSessionCreateSerializer(serializers.ModelSerializer):
         model = ChatSession
         fields = ('room_name', 'id')
 
-class ChatSessionMessageCreateSerializer(serializers.ModelSerializer):
+class ChatSessionMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatSessionMessage
         fields = ('__all__')
