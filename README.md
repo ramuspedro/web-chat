@@ -48,7 +48,8 @@
 - [ ] Private chat
 - [ ] Showing messages of a chat
 - restrict messages to only users that participate from a room
-- get messages only related from a room uri
+- [ x ] get messages only related from a room uri
+- [ ] get user who created from each message
 - delete a chat room
 - share a chat room
 - List users of room

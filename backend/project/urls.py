@@ -31,6 +31,7 @@ urlpatterns = [
     # auth api
     path('api/v1/rest-auth/', include('rest_auth.urls')),
     path('api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('accounts/', include('allauth.urls')), # url login: 127.0.0.1:8000/accounts/google/login
     # permission
     path('api-auth/', include('rest_framework.urls')),
     # swagger documentation
