@@ -41,13 +41,14 @@
 
 ### Frontend and Backend
 - [ ] List Users of chat room
-- [ ] Authentication (regular x/social)
+- [ x ] Authentication (regular x/social)
 - [ x ] Create a room for chat
 - [ ] Participate of room
 - [ ] Send messages
 - [ ] Private chat
 - [ ] Showing messages of a chat
 - restrict messages to only users that participate from a room
+- get messages and who created
 - get messages only related from a room uri
 - delete a chat room
 - share a chat room

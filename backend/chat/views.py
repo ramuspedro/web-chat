@@ -43,9 +43,12 @@ class ChatSessionListDetail(generics.RetrieveAPIView):
     chat_session = ChatSession.objects.get(uri = uri)
     serializer_class = ChatSessionListSerializer(chat_session)
     # find chat messages
-    print(serializer_class.data)
-    chat_session_messages = ChatSessionMessage.objects.all().filter(chat_session = serializer_class.data['id'])
+    chat_session_messages = ChatSessionMessage.objects.filter(chat_session = serializer_class.data['id'])
     #serializer_messages = ChatSessionMessageSerializer(list(chat_session_messages))
+
+    print("*******************************")
+    print(list(ChatSessionMessage.objects.filter(chat_session = serializer_class.data['id'])))
+
     messages = []
     for chat_message in list(chat_session_messages):
       #print(ChatSessionMessageSerializer(chat_message).data)
