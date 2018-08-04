@@ -120,11 +120,11 @@
             }
           })
           .then(function (response) {
-            console.log("TESTE", response)
-            console.log("User", username)
+            console.log("TESTE", response.data)
             // Use localStorage from Vue object
             Vue.localStorage.set('token', response.data.key)
             Vue.localStorage.set('username', username)
+            Vue.localStorage.set('userId', response.data.user)
           });
 
       }

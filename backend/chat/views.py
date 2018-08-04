@@ -46,8 +46,7 @@ class ChatSessionListDetail(generics.RetrieveAPIView):
     chat_session_messages = ChatSessionMessage.objects.filter(chat_session = serializer_class.data['id'])
     #serializer_messages = ChatSessionMessageSerializer(list(chat_session_messages))
 
-    print("*******************************")
-    print(list(ChatSessionMessage.objects.filter(chat_session = serializer_class.data['id'])))
+    # print(list(ChatSessionMessage.objects.filter(chat_session = serializer_class.data['id'])))
 
     messages = []
     for chat_message in list(chat_session_messages):
@@ -76,10 +75,34 @@ class ChatSessionCreate(generics.CreateAPIView):
     # print(serializer_class.data)
     return Response(serializer_class.data)
 
-class ChatSessionMessageCreate(generics.CreateAPIView):
+class ChatSessionMessageCreate(generics.ListCreateAPIView):
   permission_classes = (permissions.IsAuthenticated,)
   serializer_class = ChatSessionMessageSerializer
   queryset = ChatSessionMessage.objects.all()
+
+  # def get(self, request, *args, **kwargs):
+  #   chat_session_message = ChatSessionMessage.objects.create(
+  #     user = request.user,
+  #     chat_session = request.data.chat_session,
+  #     message = request.data.message
+  #   )
+
+  #   serializer_class = ChatSessionMessageSerializer(chat_session_message)
+
+  #   return Response(serializer_class.data)
+
+  # def post(self, request, *args, **kwargs):
+  #   print("**************************")
+  #   print(request.user)
+  #   chat_session_message = ChatSessionMessage.objects.create(
+  #     user = request.user,
+  #     chat_session = request.data.chat_session,
+  #     message = request.data.message
+  #   )
+
+  #   serializer_class = ChatSessionMessageSerializer(chat_session_message)
+
+  #   return Response(serializer_class.data)
 
 class ChatSessionMessageList(generics.ListAPIView):
   permission_classes = (permissions.IsAuthenticated,)

@@ -38,10 +38,10 @@
             <form>
               <div class="row">
                 <div class="col-sm-10">
-                  <input type="text" placeholder="Type a message" />
+                  <input type="text" placeholder="Type a message" v-model="message"/>
                 </div>
                 <div class="col-sm-2">
-                  <button class="btn btn-primary">Send</button>
+                  <button class="btn btn-primary" @click.prevent="sendMessage(message)">Send</button>
                 </div>
               </div>
             </form>
@@ -82,11 +82,13 @@
     data() {
       return {
         roomName: "",
+        message: "",
+        chatSession: {},
         chatMessages: []
       }
     },
     created() {
-      console.log("ENTER", this.$route.params.chat_id)
+      console.log("ENTER",Vue.localStorage.get('username'))
 
       let chat_id = this.$route.params.chat_id
       let token = Vue.localStorage.get('token')
@@ -104,10 +106,35 @@
           .then((response) => {
             console.log("Chat list: ", response)
             this.chatMessages = response.data.messages
+            this.chatSession = response.data.chat_session
           })      
     },
     methods: {
-      createRoom() {
+      sendMessage(message) {
+        console.log("Message", Vue.localStorage.get('userId'))
+
+        let token = Vue.localStorage.get('token')
+        let userId = Vue.localStorage.get('userId')
+        
+        axios({
+            method: 'post',
+            url: 'http://localhost:8000/api/v1/chat-session-message-create/',
+            // responseType: "application/json",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': "Token " + token
+            },
+            data: {
+              'message': message,
+              'chat_session': this.chatSession.id,
+              'user': userId
+            }
+          })
+          .then((response) => {
+            console.log("Message create: ", response);
+
+          })
       }
     }
   }
