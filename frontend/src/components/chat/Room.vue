@@ -3,10 +3,10 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h1 class="h2">Room</h1>
     </div>
-      <div class="col-sm-6 offset-3">
+      <div class="col-sm-8 offset-2">
         <div id="chat-container" class="card">
           <div class="card-header text-white text-center font-weight-bold subtle-blue-gradient">
-            Share the page URL to invite new friends
+            <small>Created by </small> <span v-if="chatSession.owner">{{chatSession.owner.username}}</span>
           </div>
 
           <div class="card-body">
@@ -132,8 +132,9 @@
             }
           })
           .then((response) => {
-            console.log("Message create: ", response);
-
+            console.log("Message create: ", response.data.message);
+            this.chatMessages.push(response.data)
+            this.message = ""
           })
       }
     }
@@ -239,6 +240,7 @@
 
   .chat-section {
     margin-top: 15px;
+    text-align: left;
   }
 
   .send-section {
