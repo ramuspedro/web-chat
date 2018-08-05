@@ -94,3 +94,8 @@ class ChatSessionMessageList(generics.ListAPIView):
   permission_classes = (permissions.IsAuthenticated,)
   serializer_class = ChatSessionMessageSerializer
   queryset = ChatSessionMessage.objects.all()
+
+class ChatSessionMessageListDetail(generics.RetrieveAPIView):
+  permission_classes = (permissions.IsAuthenticated,)
+  serializer_class = ChatSessionMessageSerializer
+  queryset = ChatSessionMessage.objects.all()

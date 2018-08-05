@@ -150,7 +150,6 @@
           })
           .then((response) => {
             console.log("Message create: ", response.data.message);
-            response.data['username'] = this.username
             this.chatMessages.push(response.data)
             this.message = ""
           })
