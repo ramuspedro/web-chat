@@ -26,18 +26,23 @@ class ChatSessionListDetail(generics.RetrieveAPIView):
   def get(self, request, *args, **kwargs):
     """Get chat by uri"""
     uri = kwargs['uri']
+
+    # get chat session
     chat_session = ChatSession.objects.get(uri = uri)
     chat_session_serialized = ChatSessionListSerializer(chat_session).data
 
+    # get the mensagens from a chat session
     chat_session_messages = chat_session.messages.all()
     chat_session_messages_serialized = ChatSessionMessageSerializer(list(chat_session_messages), many=True).data
+
+    # add username to identify the mensagens
+    for key in range(len(list(chat_session_messages))):
+      chat_session_messages_serialized[key]['username'] = str(chat_session_messages[key].user)
       
     return Response({
       'chat_session': chat_session_serialized,
       'messages': chat_session_messages_serialized
     })
-
-    return Response(serializer_class.data)
 
 class ChatSessionCreate(generics.CreateAPIView):
   permission_classes = (permissions.IsAuthenticated,)

@@ -21,14 +21,30 @@
                   <img class="rounded-circle" src="http://placehold.it/40/333333/fff&text=A" />
                 </div>
               </div> -->
-              <div class="row chat-section" v-for="message in chatMessages" :key="message.id">
-                <div class="col-sm-2">
-                  <img class="rounded-circle" src="http://placehold.it/40/f16000/fff&text=D" />
+              <div v-for="message in chatMessages" :key="message.id">
+                <!-- Not user messages -->
+                <div class="row chat-section" v-if="message.username != username">
+                  <div class="col-sm-2">
+                    <img class="rounded-circle" src="http://placehold.it/40/f16000/fff&text=D" />
+                  </div>
+                  <div class="col-sm-7 chat-message-left">
+                    <small>{{message.username}}</small>
+                    <p class="card-text speech-bubble speech-bubble-peer">
+                      {{message.message}}
+                    </p>
+                  </div>
                 </div>
-                <div class="col-sm-7">
-                  <p class="card-text speech-bubble speech-bubble-peer">
-                    {{message.message}}
-                  </p>
+                <!-- Messages sent by the user -->
+                <div class="row chat-section" v-if="message.username == username">
+                  <div class="col-sm-7 offset-3 chat-message-right">
+                    <small>{{message.username}}</small>
+                    <span class="card-text speech-bubble speech-bubble-user float-right text-white subtle-blue-gradient">
+                      {{message.message}}
+                    </span>
+                  </div>
+                  <div class="col-sm-2">
+                    <img class="rounded-circle" src="http://placehold.it/40/333333/fff&text=A" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -84,7 +100,8 @@
         roomName: "",
         message: "",
         chatSession: {},
-        chatMessages: []
+        chatMessages: [],
+        username: Vue.localStorage.get('username')
       }
     },
     created() {
@@ -133,6 +150,7 @@
           })
           .then((response) => {
             console.log("Message create: ", response.data.message);
+            response.data['username'] = this.username
             this.chatMessages.push(response.data)
             this.message = ""
           })
@@ -246,5 +264,28 @@
   .send-section {
     margin-bottom: -20px;
     padding-bottom: 10px;
+  }
+
+  .chat-message-left  {
+    position: relative;
+    margin-top: 8px;
+  }
+
+  .chat-message-right  {
+    position: relative;
+    margin-top: 8px;
+  }
+
+  .chat-message-left small {
+    position: absolute;
+    top: -16px;
+    color: #676767;
+  }
+
+  .chat-message-right small {
+    position: absolute;
+    top: -16px;
+    right: 15px;
+    color: #676767;
   }
 </style>
