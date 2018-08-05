@@ -26,37 +26,18 @@ class ChatSessionListDetail(generics.RetrieveAPIView):
   def get(self, request, *args, **kwargs):
     """Get chat by uri"""
     uri = kwargs['uri']
-    # try:
-    #   # find chat session
-    #   chat_session = ChatSession.objects.get(uri = uri)
-    #   serializer_class = ChatSessionListSerializer(chat_session)
-    #   # find chat messages
-    #   print(serializer_class.data)
-    #   chat_session_messages = ChatSessionMessage.objects.get(chat_session = serializer_class.data['id'])
-    #   print(chat_session_messages)
-    #   return Response(serializer_class.data)
-    # except :
-    #   return Response({
-    #     "detail": "Not found."
-    #   })
-    # find chat session
     chat_session = ChatSession.objects.get(uri = uri)
-    serializer_class = ChatSessionListSerializer(chat_session)
-    # find chat messages
-    chat_session_messages = ChatSessionMessage.objects.filter(chat_session = serializer_class.data['id'])
-    #serializer_messages = ChatSessionMessageSerializer(list(chat_session_messages))
+    chat_session_serialized = ChatSessionListSerializer(chat_session).data
 
-    # print(list(ChatSessionMessage.objects.filter(chat_session = serializer_class.data['id'])))
-
-    messages = []
-    for chat_message in list(chat_session_messages):
-      #print(ChatSessionMessageSerializer(chat_message).data)
-      messages.append(ChatSessionMessageSerializer(chat_message).data)
-    #print(chat_message)
+    chat_session_messages = chat_session.messages.all()
+    chat_session_messages_serialized = ChatSessionMessageSerializer(list(chat_session_messages), many=True).data
+      
     return Response({
-      'chat_session': serializer_class.data,
-      'messages': messages
+      'chat_session': chat_session_serialized,
+      'messages': chat_session_messages_serialized
     })
+
+    return Response(serializer_class.data)
 
 class ChatSessionCreate(generics.CreateAPIView):
   permission_classes = (permissions.IsAuthenticated,)
