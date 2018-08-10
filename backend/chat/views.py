@@ -1,3 +1,5 @@
+from notifications.signals import notify
+
 from django.shortcuts import render
 from django.core import serializers
 
@@ -67,16 +69,35 @@ class ChatSessionMessageCreate(generics.CreateAPIView):
   # queryset = ChatSessionMessage.objects.all()
 
   def post(self, request, *args, **kwargs):
-    """POST chat by id"""
-    chat_session_message = ChatSessionMessage.objects.create(
-      message = request.data['message'],
-      user = request.user,
-      chat_session = ChatSession.objects.get(id = request.data['chat_session'])
+    """POST create a chat message using a chat_id"""
+    # create a chat message
+
+    # chat_session_message = ChatSessionMessage.objects.create(
+    #   message = request.data['message'],
+    #   user = request.user,
+    #   chat_session = ChatSession.objects.get(id = request.data['chat_session'])
+    # )
+    # chat_session_message_serialized = ChatSessionMessageSerializer(chat_session_message)
+    # info = chat_session_message_serialized.data
+    # info['username'] = str(chat_session_message.user)
+
+    print(request.data)
+
+    notif_args = {
+      'source': request.user,
+      'source_display_name': "TESTEEEEEEEEEE",
+      'category': 'chat', 'action': 'Sent',
+      'obj': "TESTEEEEEEEEEE",
+      'short_description': 'You a new message', 'silent': True,
+      'extra_data': {'uri': "auhuahuahussijisjijs"}
+    }
+    notify.send(
+        sender=self.__class__, **notif_args, channels=['websocket']
     )
-    chat_session_message_serialized = ChatSessionMessageSerializer(chat_session_message)
-    info = chat_session_message_serialized.data
-    info['username'] = str(chat_session_message.user)
-    return Response(info)
+
+    # send to rabbitmq
+    return Response({})
+    # return Response(info)
 
 class ChatSessionMessageList(generics.ListAPIView):
   permission_classes = (permissions.IsAuthenticated,)

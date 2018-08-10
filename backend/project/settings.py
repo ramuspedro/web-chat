@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'rest_framework_swagger',
+    'notifications', #new
     # local apps
     'user',
     'chat'
