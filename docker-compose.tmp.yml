@@ -3,7 +3,7 @@ version: '3'
 services:
   # database
   postgres:
-    container_name: django-postgres10.1
+    container_name: db
     image: postgres:10.1
     ports:
       - '5432:5432'
@@ -15,7 +15,7 @@ services:
       - ./database:/var/lib/postgresql/data/
   # admin database
   pgadmin:
-    container_name: django-pgadmin4
+    container_name: pgadmin
     image: thajeztah/pgadmin4
     ports:
       - '5050:5050'
@@ -28,7 +28,7 @@ services:
     container_name: backend
     build:
       context: ./backend
-      dockerfile: django.dockerfile
+      dockerfile: backend.dockerfile
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/code
@@ -40,7 +40,7 @@ services:
       - postgres
   # web
   frontend:
-    container_name: vue2-frontend
+    container_name: frontend
     build:
       context: ./frontend
       dockerfile: front.dockerfile
@@ -49,3 +49,20 @@ services:
     volumes:
       - ./frontend:/home/app
     command: "npm run serve"
+  # rabbit
+  rabbit:
+    image: rabbitmq:3-management
+    container_name: rabbit
+    hostname: rabbit
+    ports:
+      - "15673:15672"
+    environment:
+    - RABBITMQ_DEFAULT_USER=admin
+    - RABBITMQ_DEFAULT_PASS=admin
+  # redis
+  redis:
+    image: redis
+    container_name: redis
+    hostname: redis
+    ports:
+      - "6379:6379"   
